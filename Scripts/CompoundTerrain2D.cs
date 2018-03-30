@@ -184,9 +184,5 @@ namespace extTerrain2D
 		}
 
 		#endregion
-
-		#region Private Methods
-
-		#endregion
 	}
 }

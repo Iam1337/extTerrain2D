@@ -3,7 +3,6 @@
 using UnityEngine;
 
 using UnityEditor;
-using UnityEngine.Rendering;
 
 namespace extTerrain2D.Editor
 {
