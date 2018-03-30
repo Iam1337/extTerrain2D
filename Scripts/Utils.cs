@@ -61,15 +61,16 @@ namespace extTerrain2D
 			renderer.sharedMaterials = new Material[] { groundMaterial, lineMaterial };
 
 			var terrain = root.AddComponent<Terrain2D>();
-			terrain.AddKeyPoint();
+			if (terrain.GetKeyPointsCount() == 0) // Fix for editor OnValidate.
+			{
+				terrain.AddKeyPoint();
+				var keypoint = terrain.GetKeyPoint(0);
+				keypoint.Position = new Vector2(0, 0);
 
-			var keypoint = terrain.GetKeyPoint(0);
-			keypoint.Position = new Vector2(0, 0);
-
-			terrain.AddKeyPoint();
-
-			keypoint = terrain.GetKeyPoint(1);
-			keypoint.Position = new Vector2(1, 0);
+				terrain.AddKeyPoint();
+				keypoint = terrain.GetKeyPoint(1);
+				keypoint.Position = new Vector2(1, 0);
+			}
 
 			terrain.Rebuild();
 

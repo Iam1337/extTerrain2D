@@ -167,8 +167,6 @@ namespace extTerrain2D
 			if (index == 0 || index >= _terrains.Count)
 				return;
 
-			var terrain = GetTerrain(index);
-
 			_terrains.RemoveAt(index);
 		}
 
