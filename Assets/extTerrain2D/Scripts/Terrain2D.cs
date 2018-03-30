@@ -11,10 +11,6 @@ namespace extTerrain2D
 	[RequireComponent(typeof(MeshRenderer))]
 	public class Terrain2D : MonoBehaviour
 	{
-		#region Extensions
-
-		#endregion
-
 		#region Public Vars
 
 		public float Width
@@ -88,14 +84,12 @@ namespace extTerrain2D
 		[SerializeField]
 		private List<KeyPoint> _keyPoints = new List<KeyPoint>();
 
-		[SerializeField]
+		//[SerializeField]
 		private Mesh _mesh;
 
 		private List<float> _heights = new List<float>();
 
 		private MeshFilter _meshFilter;
-
-		private MeshRenderer _meshRenderer;
 
 		#endregion
 
@@ -110,9 +104,7 @@ namespace extTerrain2D
 			}
 
 			_meshFilter = GetComponent<MeshFilter>();
-			_meshFilter.mesh = _mesh;
-
-			_meshRenderer = GetComponent<MeshRenderer>();
+			_meshFilter.sharedMesh = _mesh;
 		}
 
 #if UNITY_EDITOR
@@ -250,10 +242,6 @@ namespace extTerrain2D
 
 		#endregion
 
-		#region Protected Methods
-
-		#endregion
-
 		#region Private Methods
 
 		private void GetSegment(float time, out KeyPoint startKey, out KeyPoint endKey)
@@ -299,6 +287,7 @@ namespace extTerrain2D
 				_mesh = new Mesh();
 				_mesh.name = "extTerrain2D";
 			}
+
 			if (_meshFilter == null)
 				_meshFilter = GetComponent<MeshFilter>();
 
@@ -375,11 +364,11 @@ namespace extTerrain2D
 					}
 					else
 					{
-						var minus = vertices[i].x - vertices[i - 1].x;
 						uv.Add(new Vector2(vertices[i].x / _width, 1f));
 					}
 				}
 			}
+
 
 			_mesh.Clear();
 			_mesh.subMeshCount = 2;

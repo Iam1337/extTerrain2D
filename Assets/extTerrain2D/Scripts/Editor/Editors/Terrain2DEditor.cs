@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine.Experimental.UIElements;
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace extTerrain2D.Editor.Editors
 {
@@ -32,9 +33,9 @@ namespace extTerrain2D.Editor.Editors
 
 		private static readonly GUIContent _colliderTypeContent = new GUIContent("Collider Type:");
 
-		private static readonly GUIContent _rightHandleContent = new GUIContent("Right Handle:");
+		//private static readonly GUIContent _rightHandleContent = new GUIContent("Right Handle:");
 
-		private static readonly GUIContent _leftHandleContent = new GUIContent("Left Handle:");
+		//private static readonly GUIContent _leftHandleContent = new GUIContent("Left Handle:");
 
 		#endregion
 
@@ -137,8 +138,35 @@ namespace extTerrain2D.Editor.Editors
 			// UV SETTINGS BOX END
 			EditorGUILayout.EndVertical();
 
+
+			EditorGUILayout.LabelField("KeyPoints:", EditorStyles.boldLabel);
+			GUILayout.BeginVertical("box");
+
+			GUILayout.BeginHorizontal("box");
+			var buttonSettings = new GUILayoutOption[] { GUILayout.Width(25f), GUILayout.Height(25f) };
+			var labelSettings = new GUILayoutOption[] {GUILayout.Height(23f)};
+
+			var prevButton = GUILayout.Button("<", buttonSettings);
+
+			GUILayout.BeginHorizontal("box", labelSettings);
+			if (_selectedIndex >= 0)
+			{
+				GUILayout.Label(string.Format("{0}/{1}", _selectedIndex + 1, _terrain.GetKeyPointsCount()),
+					CustomEditorStyles.CenterLabel);
+			}
+			else
+			{
+				GUILayout.Label("Select KeyPoint in SceneView.", CustomEditorStyles.CenterLabel);
+			}
+			GUILayout.EndHorizontal();
+
+			var nextButton = GUILayout.Button(">", buttonSettings);
+			GUILayout.EndVertical();
+
+			if (prevButton || nextButton) SwitchId(prevButton, nextButton);
+
 			// KEYPOINT SETTINGS BOX
-			EditorGUILayout.LabelField("KeyPoint Settings:", EditorStyles.boldLabel);
+			EditorGUILayout.LabelField("Settings:", EditorStyles.boldLabel);
 			GUILayout.BeginVertical("box");
 
 			if (_selectedIndex < 0)
@@ -146,7 +174,7 @@ namespace extTerrain2D.Editor.Editors
 				var height = EditorGUIUtility.singleLineHeight * 3 + EditorGUIUtility.standardVerticalSpacing;
 
 				GUILayout.Space(height / 2f);
-				EditorGUILayout.LabelField("Select KeyPoint in SceneView.", CustomEditorStyles.CenterLabel);
+				EditorGUILayout.LabelField("- none -", CustomEditorStyles.CenterLabel);
 				GUILayout.Space(height / 2f);
 			}
 			else
@@ -156,6 +184,8 @@ namespace extTerrain2D.Editor.Editors
 
 			// KEYPOINT SETTINGS BOX END
 			EditorGUILayout.EndVertical();
+
+			GUILayout.EndVertical();
 
 			// SETTINGS BLOCK END
 			EditorGUILayout.EndVertical();
@@ -188,7 +218,7 @@ namespace extTerrain2D.Editor.Editors
 				{
 					Handles.DrawLine(keypointPosition, rightHandlePosition);
 				}
-				if (index != 0)
+				if (index > 0)
 				{
 					Handles.DrawLine(keypointPosition, leftHandlePosition);
 				}
@@ -200,7 +230,7 @@ namespace extTerrain2D.Editor.Editors
 					DrawKeyPointRightHandle(index, keypoint, rightHandlePosition);
 				}
 
-				if (index != 0)
+				if (index > 0)
 				{
 					DrawKeyPointLeftHandle(index, keypoint, leftHandlePosition);
 				}
@@ -214,17 +244,17 @@ namespace extTerrain2D.Editor.Editors
 				}
 			}
 
-			if (_indexIds.ContainsKey(GUIUtility.keyboardControl))
+			if (_indexIds.ContainsKey(GUIUtility.hotControl))
 			{
-				if (_indexIds[GUIUtility.keyboardControl] != _selectedIndex)
+				if (_indexIds[GUIUtility.hotControl] != _selectedIndex)
 				{
-					_selectedIndex = _indexIds[GUIUtility.keyboardControl];
+					_selectedIndex = _indexIds[GUIUtility.hotControl];
 					Repaint();
 				}
 			}
 			else
 			{
-				_selectedIndex = -1;
+				//_selectedIndex = -1;
 			}
 
 			if (Event.current.type == EventType.MouseDown && Event.current.button == (int)MouseButton.LeftMouse && Event.current.clickCount == 2)
@@ -278,6 +308,30 @@ namespace extTerrain2D.Editor.Editors
 
 		#region Private Methods
 
+		private void SwitchId(bool prevButton, bool nextButton)
+		{
+			var id = _selectedIndex;
+			if (nextButton)
+			{
+				id++;
+			}
+
+			if (prevButton)
+			{
+				id--;
+			}
+
+			if (_selectedIndex != id)
+			{
+				var keyPointsCount = _terrain.GetKeyPointsCount();
+
+				if (id < 0) id = keyPointsCount - 1;
+				if (id >= keyPointsCount) id = 0;
+
+				_selectedIndex = id;
+			}
+		}
+
 		private void DrawKeyPointSettings(int index)
 		{
 			EditorGUILayout.LabelField("Selected ID: " + _selectedIndex , EditorStyles.boldLabel);
@@ -305,11 +359,10 @@ namespace extTerrain2D.Editor.Editors
 		{
 			EditorGUI.BeginChangeCheck();
 
-			Handles.color = Color.white;
+			Handles.color = _selectedIndex == index ? Color.yellow : Color.white;
 			var size = HandleUtility.GetHandleSize(keypointPosition) * 0.2f;
 			var position = (Vector2)Handles.FreeMoveHandle(keypointPosition, Quaternion.identity, size, Vector2.zero, (cID, p, r, s, e) =>
 			{
-
 				if (!_indexIds.ContainsKey(cID))
 					_indexIds.Add(cID, index);
 
