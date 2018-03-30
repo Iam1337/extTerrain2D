@@ -6,7 +6,6 @@ using UnityEditor;
 using UnityEngine.Experimental.UIElements;
 
 using System.Collections.Generic;
-using System.Linq;
 
 namespace extTerrain2D.Editor.Editors
 {
@@ -32,10 +31,6 @@ namespace extTerrain2D.Editor.Editors
 		private static readonly GUIContent _handlesTypeContent = new GUIContent("Handles Type:");
 
 		private static readonly GUIContent _colliderTypeContent = new GUIContent("Collider Type:");
-
-		//private static readonly GUIContent _rightHandleContent = new GUIContent("Right Handle:");
-
-		//private static readonly GUIContent _leftHandleContent = new GUIContent("Left Handle:");
 
 		#endregion
 
@@ -252,10 +247,6 @@ namespace extTerrain2D.Editor.Editors
 					Repaint();
 				}
 			}
-			else
-			{
-				//_selectedIndex = -1;
-			}
 
 			if (Event.current.type == EventType.MouseDown && Event.current.button == (int)MouseButton.LeftMouse && Event.current.clickCount == 2)
 			{
@@ -298,14 +289,6 @@ namespace extTerrain2D.Editor.Editors
 
 		#endregion
 
-		#region Public Methods
-
-		#endregion
-
-		#region Protected Methods
-
-		#endregion
-
 		#region Private Methods
 
 		private void SwitchId(bool prevButton, bool nextButton)
@@ -339,20 +322,12 @@ namespace extTerrain2D.Editor.Editors
 			var keypointProperty = _keyPointsProperty.GetArrayElementAtIndex(index);
 			var positionProperty = keypointProperty.FindPropertyRelative("_position");
 			var handlesTypeProperty = keypointProperty.FindPropertyRelative("_handlesType");
-			//var leftHandleProperty = keypointProperty.FindPropertyRelative("_leftHandlePosition");
-			//var rightHandleProperty = keypointProperty.FindPropertyRelative("_rightHandlePosition");
 
 			// POSITION
 			EditorGUILayout.PropertyField(positionProperty, _positionContent);
 
 			// HANDLES 
 			EditorGUILayout.PropertyField(handlesTypeProperty, _handlesTypeContent);
-
-			// RIGHT HANDLE
-			//EditorGUILayout.PropertyField(rightHandleProperty, _rightHandleContent);
-
-			// LEFT HANDLE 
-			//EditorGUILayout.PropertyField(leftHandleProperty, _leftHandleContent);
 		}
 
 		private void DrawKeyPointMain(int index, KeyPoint keypoint, Vector3 keypointPosition, int pointsCount)

@@ -30,14 +30,6 @@ namespace extTerrain2D.Editor.Editors
 
 		#endregion
 
-		#region Public Vars
-
-		#endregion
-
-		#region Protected Vars
-
-		#endregion
-
 		#region Private Vars
 
 		private CompoundTerrain2D _compoundTerrain;
@@ -196,14 +188,6 @@ namespace extTerrain2D.Editor.Editors
 				Handles.DrawLine(endPosition, endPosition - offset);
 			}
 		}
-
-		#endregion
-
-		#region Public Methods
-
-		#endregion
-
-		#region Protected Methods
 
 		#endregion
 

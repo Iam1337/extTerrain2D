@@ -6,18 +6,6 @@ namespace extTerrain2D
 {
 	public static class Utils
 	{
-		#region Static Public Vars
-
-		#endregion
-
-		#region Static Protected Vars
-
-		#endregion
-
-		#region Static Private Vars
-
-		#endregion
-
 		#region Static Public Methods
 
 		public static float Map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp = true)
