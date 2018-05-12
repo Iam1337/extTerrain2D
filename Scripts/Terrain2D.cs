@@ -84,7 +84,6 @@ namespace extTerrain2D
 		[SerializeField]
 		private List<KeyPoint> _keyPoints = new List<KeyPoint>();
 
-		//[SerializeField]
 		private Mesh _mesh;
 
 		private List<float> _heights = new List<float>();

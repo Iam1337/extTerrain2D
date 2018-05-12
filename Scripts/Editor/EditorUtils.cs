@@ -6,33 +6,29 @@ using UnityEditor;
 
 namespace extTerrain2D.Editor
 {
-    public static class EditorUtils
-    {
-        #region Static Private Vars
+	public static class EditorUtils
+	{
+		#region Static Public Methods
 
-        #endregion
+		public static void DrawLogo()
+		{
+			if (EditorAssets.IronWall != null)
+			{
+				EditorGUILayout.Space();
 
-        #region Static Public Methods
+				var rect = GUILayoutUtility.GetRect(0, 0);
+				var width = EditorAssets.IronWall.width * 0.2f;
+				var height = EditorAssets.IronWall.height * 0.2f;
 
-        public static void DrawLogo()
-        {
-            if (EditorAssets.IronWall != null)
-            {
-                EditorGUILayout.Space();
+				rect.x = rect.width * 0.5f - width * 0.5f;
+				rect.y = rect.y + rect.height * 0.5f - height * 0.5f;
+				rect.width = width;
+				rect.height = height;
 
-                var rect = GUILayoutUtility.GetRect(0, 0);
-                var width = EditorAssets.IronWall.width * 0.2f;
-                var height = EditorAssets.IronWall.height * 0.2f;
-
-                rect.x = rect.width * 0.5f - width * 0.5f;
-                rect.y = rect.y + rect.height * 0.5f - height * 0.5f;
-                rect.width = width;
-                rect.height = height;
-
-                GUI.DrawTexture(rect, EditorAssets.IronWall);
-                EditorGUILayout.Space();
-            }
-        }
+				GUI.DrawTexture(rect, EditorAssets.IronWall);
+				EditorGUILayout.Space();
+			}
+		}
 
 		public static void AddSegmentHandleCap(int controlID, Vector3 position, Quaternion rotation, float size, EventType eventType)
 		{
@@ -81,6 +77,6 @@ namespace extTerrain2D.Editor
 			}
 		}
 
-        #endregion
-    }
+		#endregion
+	}
 }
