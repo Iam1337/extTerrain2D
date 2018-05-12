@@ -10,6 +10,7 @@ using System.Collections.Generic;
 namespace extTerrain2D.Editor.Editors
 {
 	[CustomEditor(typeof(Terrain2D))]
+	[CanEditMultipleObjects]
 	public class Terrain2DEditor : UnityEditor.Editor
 	{
 		#region Static Private Vars
@@ -133,54 +134,56 @@ namespace extTerrain2D.Editor.Editors
 			// UV SETTINGS BOX END
 			EditorGUILayout.EndVertical();
 
-
-			EditorGUILayout.LabelField("KeyPoints:", EditorStyles.boldLabel);
-			GUILayout.BeginVertical("box");
-
-			GUILayout.BeginHorizontal("box");
-			var buttonSettings = new GUILayoutOption[] { GUILayout.Width(25f), GUILayout.Height(25f) };
-			var labelSettings = new GUILayoutOption[] {GUILayout.Height(23f)};
-
-			var prevButton = GUILayout.Button("<", buttonSettings);
-
-			GUILayout.BeginHorizontal("box", labelSettings);
-			if (_selectedIndex >= 0)
+			if (targets.Length == 1)
 			{
-				GUILayout.Label(string.Format("{0}/{1}", _selectedIndex + 1, _terrain.GetKeyPointsCount()),
-					CustomEditorStyles.CenterLabel);
+				EditorGUILayout.LabelField("KeyPoints:", EditorStyles.boldLabel);
+				GUILayout.BeginVertical("box");
+
+				GUILayout.BeginHorizontal("box");
+				var buttonSettings = new GUILayoutOption[] { GUILayout.Width(25f), GUILayout.Height(25f) };
+				var labelSettings = new GUILayoutOption[] { GUILayout.Height(23f) };
+
+				var prevButton = GUILayout.Button("<", buttonSettings);
+
+				GUILayout.BeginHorizontal("box", labelSettings);
+				if (_selectedIndex >= 0)
+				{
+					GUILayout.Label(string.Format("{0}/{1}", _selectedIndex + 1, _terrain.GetKeyPointsCount()),
+						CustomEditorStyles.CenterLabel);
+				}
+				else
+				{
+					GUILayout.Label("Select KeyPoint in SceneView.", CustomEditorStyles.CenterLabel);
+				}
+				GUILayout.EndHorizontal();
+
+				var nextButton = GUILayout.Button(">", buttonSettings);
+				GUILayout.EndVertical();
+
+				if (prevButton || nextButton) SwitchId(prevButton, nextButton);
+
+				// KEYPOINT SETTINGS BOX
+				EditorGUILayout.LabelField("Settings:", EditorStyles.boldLabel);
+				GUILayout.BeginVertical("box");
+
+				if (_selectedIndex < 0)
+				{
+					var height = EditorGUIUtility.singleLineHeight * 3 + EditorGUIUtility.standardVerticalSpacing;
+
+					GUILayout.Space(height / 2f);
+					EditorGUILayout.LabelField("- none -", CustomEditorStyles.CenterLabel);
+					GUILayout.Space(height / 2f);
+				}
+				else
+				{
+					DrawKeyPointSettings(_selectedIndex);
+				}
+
+				// KEYPOINT SETTINGS BOX END
+				EditorGUILayout.EndVertical();
+
+				GUILayout.EndVertical();
 			}
-			else
-			{
-				GUILayout.Label("Select KeyPoint in SceneView.", CustomEditorStyles.CenterLabel);
-			}
-			GUILayout.EndHorizontal();
-
-			var nextButton = GUILayout.Button(">", buttonSettings);
-			GUILayout.EndVertical();
-
-			if (prevButton || nextButton) SwitchId(prevButton, nextButton);
-
-			// KEYPOINT SETTINGS BOX
-			EditorGUILayout.LabelField("Settings:", EditorStyles.boldLabel);
-			GUILayout.BeginVertical("box");
-
-			if (_selectedIndex < 0)
-			{
-				var height = EditorGUIUtility.singleLineHeight * 3 + EditorGUIUtility.standardVerticalSpacing;
-
-				GUILayout.Space(height / 2f);
-				EditorGUILayout.LabelField("- none -", CustomEditorStyles.CenterLabel);
-				GUILayout.Space(height / 2f);
-			}
-			else
-			{
-				DrawKeyPointSettings(_selectedIndex);
-			}
-
-			// KEYPOINT SETTINGS BOX END
-			EditorGUILayout.EndVertical();
-
-			GUILayout.EndVertical();
 
 			// SETTINGS BLOCK END
 			EditorGUILayout.EndVertical();

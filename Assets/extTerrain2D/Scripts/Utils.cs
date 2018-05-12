@@ -84,13 +84,5 @@ namespace extTerrain2D
 		}
 
 		#endregion
-
-		#region Static Protected Methods
-
-		#endregion
-
-		#region Static Private Methods
-
-		#endregion
 	}
 }

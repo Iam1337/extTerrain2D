@@ -1,19 +1,19 @@
-/* Copyright (c) 2018 ExT (V.Sigalkin) */
+﻿/* Copyright (c) 2018 ExT (V.Sigalkin) */
 
 using UnityEditor;
 using UnityEngine;
 
 namespace extTerrain2D.Editor
 {
-    public static class EditorAssets
-    {
-        #region Static Private Vars
+	public static class EditorAssets
+	{
+		#region Static Private Vars
 
-        private const string _defaultFolder = "extTerrain2D/";
+		private const string _defaultFolder = "extTerrain2D/";
 
-        private static Texture2D _iwIcon;
+		private static Texture2D _iwIcon;
 
-        private static bool _isProSkin;
+		private static bool _isProSkin;
 
 		private static Mesh _quadMesh;
 
@@ -27,31 +27,31 @@ namespace extTerrain2D.Editor
 
 		private static Material _keypointMaterial;
 
-		public static  Material _keypointHandleMaterial;
+		public static Material _keypointHandleMaterial;
 
-        #endregion
+		#endregion
 
-        #region Static Public Vars
+		#region Static Public Vars
 
-        public static Texture2D IronWall
-        {
-            get
-            {
-                if (_iwIcon == null || EditorGUIUtility.isProSkin != _isProSkin)
-                {
-                    _isProSkin = EditorGUIUtility.isProSkin;
+		public static Texture2D IronWall
+		{
+			get
+			{
+				if (_iwIcon == null || EditorGUIUtility.isProSkin != _isProSkin)
+				{
+					_isProSkin = EditorGUIUtility.isProSkin;
 
-                    if (_iwIcon != null)
-                    {
-                        Resources.UnloadAsset(_iwIcon);
-                    }
+					if (_iwIcon != null)
+					{
+						Resources.UnloadAsset(_iwIcon);
+					}
 
-                    _iwIcon = LoadTexture(_isProSkin ? "IW_logo_light" : "IW_logo_dark");
-                }
+					_iwIcon = LoadTexture(_isProSkin ? "IW_logo_light" : "IW_logo_dark");
+				}
 
-                return _iwIcon;
-            }
-        }
+				return _iwIcon;
+			}
+		}
 
 		public static Mesh QuadMesh
 		{
@@ -97,7 +97,7 @@ namespace extTerrain2D.Editor
 
 		public static Material GroundMaterial
 		{
-			get 
+			get
 			{
 				if (_terrainGround == null)
 					_terrainGround = LoadMaterial("terrain-ground");
@@ -158,14 +158,14 @@ namespace extTerrain2D.Editor
 			}
 		}
 
-        #endregion
+		#endregion
 
-        #region Static Private Methods
+		#region Static Private Methods
 
-        private static Texture2D LoadTexture(string fileName)
-        {
-            return Resources.Load<Texture2D>(_defaultFolder + fileName);
-        }
+		private static Texture2D LoadTexture(string fileName)
+		{
+			return Resources.Load<Texture2D>(_defaultFolder + fileName);
+		}
 
 		private static Material LoadMaterial(string fileName)
 		{
@@ -183,6 +183,6 @@ namespace extTerrain2D.Editor
 			return material;
 		}
 
-        #endregion
-    }
+		#endregion
+	}
 }
