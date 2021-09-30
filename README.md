@@ -3,6 +3,7 @@ Created by [iam1337](https://github.com/iam1337)
 
 ![](https://img.shields.io/badge/unity-2021.1%20or%20later-green.svg)
 [![⚙ Build and Release](https://github.com/Iam1337/extTerrain2D/actions/workflows/ci.yml/badge.svg)](https://github.com/Iam1337/extTerrain2D/actions/workflows/ci.yml)
+[![openupm](https://img.shields.io/npm/v/com.iam1337.extterrain2d?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.iam1337.extterrain2d/)
 [![](https://img.shields.io/github/license/iam1337/extTerrain2D.svg)](https://github.com/Iam1337/extTerrain2D/blob/master/LICENSE)
 
 ## Introduction
@@ -13,6 +14,30 @@ extTerrain2D is a tool dedicated to create 2D terrains by beizer curve. It gener
 **Old school**
 
 Just copy the [Assets/extTerrain2D](Assets/extTerrain2D) folder into your Assets directory within your Unity project, or [download latest extTerrain2D.unitypackage](https://github.com/iam1337/extTerrain2D/releases).
+
+**OpenUPM**
+
+Via [openupm-cli](https://github.com/openupm/openupm-cli):<br>
+```
+openupm add com.iam1337.extterrain2d
+```
+
+Or if you don't have it, add the scoped registry to manifest.json with the desired dependency semantic version:
+
+```
+"scopedRegistries": [
+	{
+		"name": "package.openupm.com",
+		"url": "https://package.openupm.com",
+		"scopes": [
+			"com.iam1337.extterrain2d",
+		]
+	}
+],
+"dependencies": {
+	"com.iam1337.extosc.extterrain2d": "1.0.0",
+}
+```
 
 **Package Manager**
 
