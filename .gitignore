@@ -1,4 +1,4 @@
-# extTerrain2D .gitignore file - 2018
+# extTerrain2D .gitignore file 2021
 
 # -------
 # FOLDERS
@@ -11,8 +11,14 @@
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
+/[Ll]ogs/
+/[Uu]serSettings/
 /Assets/AssetStoreTools*
 AssetBundles/
+
+# TextMeshPro Essentials
+Assets/TextMesh Pro.meta
+Assets/TextMesh Pro/
 
 # Visual Studio
 
@@ -45,6 +51,7 @@ Assembly-CSharp.csproj
 .vscode/
 .vs/
 .idea/
+.vsconfig
 
 # OS generated
 
@@ -57,4 +64,3 @@ Icon?
 ehthumbs.db
 Thumbs.db
 Thumbs.db.meta
-
