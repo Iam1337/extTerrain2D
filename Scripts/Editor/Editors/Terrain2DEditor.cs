@@ -1,9 +1,9 @@
-﻿/* Copyright (c) 2018 ExT (V.Sigalkin) */
+﻿/* Copyright (c) 2021 ExT (V.Sigalkin) */
 
 using UnityEngine;
 
 using UnityEditor;
-using UnityEngine.Experimental.UIElements;
+using UnityEngine.UIElements;
 
 using System.Collections.Generic;
 
@@ -359,7 +359,8 @@ namespace extTerrain2D.Editor.Editors
 
 				_selectedIndex = index;
 
-				Undo.RecordObject(target, "Move KeyPoint");
+				EditorUtility.SetDirty(target);
+				Undo.RegisterCompleteObjectUndo(target, "Move KeyPoint");
 			}
 		}
 
@@ -386,7 +387,8 @@ namespace extTerrain2D.Editor.Editors
 
 				keypoint.SetRightHandle(position);
 
-				Undo.RecordObject(target, "Move Right KeyPoint Handle: " + index);
+				EditorUtility.SetDirty(target);
+				Undo.RegisterCompleteObjectUndo(target, "Move Right KeyPoint Handle: " + index);
 			}
 		}
 
@@ -413,7 +415,8 @@ namespace extTerrain2D.Editor.Editors
 
 				keypoint.SetLeftHandle(position);
 
-				Undo.RecordObject(target, "Move Left KeyPoint Hadle: " + index);
+				EditorUtility.SetDirty(target);
+				Undo.RegisterCompleteObjectUndo(target, "Move Left KeyPoint Hadle: " + index);
 			}
 		}
 
