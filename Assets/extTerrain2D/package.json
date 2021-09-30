@@ -1,7 +1,7 @@
 {
   "name": "com.iam1337.extterrain2d",
   "displayName": "extTerrain2D",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "unity": "2021.1",
   "description": "Small 2D terrain asset.",
   "license": "MIT",

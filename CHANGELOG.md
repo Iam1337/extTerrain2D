@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Iam1337/extTerrain2D/compare/v1.0.0...v1.0.1) (2021-09-30)
+
+
+### Bug Fixes
+
+* **examples:** update examples ([5ab1477](https://github.com/Iam1337/extTerrain2D/commit/5ab1477f88153c20c988d5ef97155483ca85ec83))
+
 # 1.0.0 (2021-09-30)
 
 
