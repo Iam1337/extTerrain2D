@@ -5,6 +5,7 @@ Created by [iam1337](https://github.com/iam1337)
 [![⚙ Build and Release](https://github.com/Iam1337/extTerrain2D/actions/workflows/ci.yml/badge.svg)](https://github.com/Iam1337/extTerrain2D/actions/workflows/ci.yml)
 [![openupm](https://img.shields.io/npm/v/com.iam1337.extterrain2d?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.iam1337.extterrain2d/)
 [![](https://img.shields.io/github/license/iam1337/extTerrain2D.svg)](https://github.com/Iam1337/extTerrain2D/blob/master/LICENSE)
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 ## Introduction
 extTerrain2D is a tool dedicated to create 2D terrains by beizer curve. It generates a mesh with two materials (two submesh) and colliders. Just look at [this video](https://www.youtube.com/watch?v=j7iCimyGXHo).
