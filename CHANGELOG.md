@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/Iam1337/extTerrain2D/compare/v1.0.4...v1.0.5) (2022-01-24)
+
+
+### Bug Fixes
+
+* **ci:** added publish check ([d37b075](https://github.com/Iam1337/extTerrain2D/commit/d37b07529c87f0fde8ea5e737439f43255d44e0a))
+
 ## [1.0.4](https://github.com/Iam1337/extTerrain2D/compare/v1.0.3...v1.0.4) (2022-01-24)
 
 
