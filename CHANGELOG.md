@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/Iam1337/extTerrain2D/compare/v1.0.3...v1.0.4) (2022-01-24)
+
+
+### Bug Fixes
+
+* **ci:** added self-hosted npm mirror ([2e747ef](https://github.com/Iam1337/extTerrain2D/commit/2e747eff47e003ba2367499dd8fd7d6047e09a51))
+
 ## [1.0.3](https://github.com/Iam1337/extTerrain2D/compare/v1.0.2...v1.0.3) (2022-01-07)
 
 ## [1.0.2](https://github.com/Iam1337/extTerrain2D/compare/v1.0.1...v1.0.2) (2022-01-07)
